@@ -3,17 +3,12 @@ const Discord = require('discord.js'), // This will be used for creating embed
       table = require('table'); // This will be used for preparing the output to a table
       send = require('quick.hook'); // This will be used for creating & sending webhooks
 
-// We can call our command handler here
+
 module.exports.run = async (bot, message, args) => {
-    // Be sure to call this in async, as we will be fetching the invites of the guild
 
-    // First, we need to fetch the invites
-    let invites = await message.guild.fetchInvites().catch(error => { // This will store all of the invites into the variable
-        // If an error is catched, it will run this...
+    let invites = await message.guild.fetchInvites().catch(error => { 
         return message.channel.send('Sorry, I don\'t have the proper permissions to view invites!');
-    }) // This will store all of the invites into the variable
 
-    // Next, we can turn invites into an array
     invites = invites.array();
 
     // Now, using arraySort, we can sort the array by 'uses'
